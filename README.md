@@ -20,7 +20,7 @@ Please implement a quiz-taking system.
 What to do
 ----------
 
-* Do make use of frameworks, libraries, plugins, anything that helps you build this (GEM uses Lumen/Laravel or Express on the backend and Angular on the frontend, if you're looking for ideas)
+* Do make use of frameworks, libraries, plugins, anything that helps you build this (GEM uses Lumen/Laravel or Express on the backend and React on the frontend, if you're looking for ideas)
 * Do host the app somewhere that we can see it working the way you intend (Digital Ocean is cheap and easy if you need to set something up)
 * Do apply common sense to the scale of the app - quizzes can have tons of features, limit yourself to what you _need_
 * Do have fun!
