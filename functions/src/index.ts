@@ -1,17 +1,41 @@
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import { getAnswerById, getQuestionById, initializeApp, reject } from './helpers';
 
-admin.initializeApp(functions.config().firebase);
+const { db, main } = initializeApp();
 
-const app = express();
-const main = express();
+main.get('/questions', async (_, res) => {
+    try {
+        const questionsDoc = await db.collection('questions').get();
+        const questions = questionsDoc.docs;
+        res.send(questions);
+    } catch (e) {
+        reject(res, e);
+    }
+});
 
-main.use('/', app);
-main.use(bodyParser.json());
-main.use(bodyParser.urlencoded({ extended: false }));
+main.get('/question/:questionId', async (req, res) => {
+    try {
+        const question = await getQuestionById(db, req.params.questionId);
+        res.send(question);
+    } catch (e) {
+        reject(res, e);
+    }
+});
 
-const db = admin.firestore();
+main.post('/validate/:questionId', async (req, res) => {
+    try {
+        const {
+            params: { questionId },
+            body: { answer },
+        } = req;
+
+        const question = await getAnswerById(db, questionId);
+        const isValid = question.answer === answer;
+
+        res.send({ isValid });
+    } catch (e) {
+        reject(res, e);
+    }
+});
 
 export const api = functions.https.onRequest(main);
