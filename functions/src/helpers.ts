@@ -1,13 +1,10 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import { Express, Response } from 'express';
-import * as admin from 'firebase-admin';
-import * as functions from 'firebase-functions';
-// import { Question } from './types';
 
 type firestoreDb = FirebaseFirestore.Firestore;
 export const reject = (res: Response, rejectMessage: string): void => {
-    res.status(400).send(rejectMessage);
+    res.status(400).send({ rejectMessage });
 };
 
 const getDocs = async (collectionName: string, db: firestoreDb) => (await db.collection(collectionName).get()).docs;
@@ -24,15 +21,12 @@ export const getAnswerById = async (db: firestoreDb, id: string): Promise<Fireba
     return answer;
 };
 
-export const initializeApp = (): { db: firestoreDb; main: Express } => {
+export const initializeExpress = (): Express => {
     const app = express();
-    const main = express();
 
-    main.use('/', app);
-    main.use(bodyParser.json());
-    main.use(bodyParser.urlencoded({ extended: false }));
-    admin.initializeApp(functions.config().firebase);
+    app.use('/', express());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
 
-    const db = admin.firestore();
-    return { db, main };
+    return app;
 };
