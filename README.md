@@ -21,7 +21,7 @@ The code implementation of `Quiz` and `QuestionCard` could be cleaned up further
   1. `git clone https://github.com/colinnielsen/gem_coding-challenge`
   2. `cd frontend/`
   3. `yarn | npm i`
-  4. `yarn start`
+  4. `yarn start | npm start`
 
 #### Backend
 The server is up and running at `FIREBASE_URL` so no need to run it locally to test.
@@ -31,11 +31,9 @@ To test the server
    2. `yarn test | npm test`
 
 
-#### Link to app [here](https://gemcodinginterview.web.app/).
+## Link to app [here](https://gemcodinginterview.web.app/)
 
-
-
-
+---
 
 
 Green Egg Media Web App Coding Challenge
