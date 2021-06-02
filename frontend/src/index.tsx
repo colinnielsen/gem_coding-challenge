@@ -1,5 +1,17 @@
-import { ChakraProvider, theme } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import App from './app';
+import { AppState } from './state/appState';
 
-render(<ChakraProvider theme={theme}>helllloooo</ChakraProvider>, document.getElementById('app'));
+render(
+    <AppState>
+            <BrowserRouter>
+                <ChakraProvider>
+                    <App />
+                </ChakraProvider>
+            </BrowserRouter>
+        </AppState>,
+    document.getElementById('app'),
+);

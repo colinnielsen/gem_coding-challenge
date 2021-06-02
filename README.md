@@ -60,3 +60,9 @@ The aspects of your code we will assess include:
 * **Code quality**: is the code simple, easy to understand, and maintainable?  Are there any code smells or other red flags? Is the coding style consistent with the language's guidelines? Is it consistent throughout the codebase?
 * **Testing**: do you have some unit and/or integration tests?
 * **Technical choices**: do choices of libraries, databases, architecture etc. seem appropriate for the chosen application?
+
+--------------
+# Solution
+## Challenges
+My biggest challenges for this project was test driven development. I had a tough time implementing different library‘s, specifically to mark the fire store database I was using. Are utilized dependency injection and a fake database object to simulate what fire store I would return from my server so that it could be tested and isolation.
+If I had more time, I would definitely more battle hardened testing methods, integration testing and flushing out all my tests to include failing assertions as well. 

@@ -1,20 +1,37 @@
 {
-    "devDependencies": {
-        "@types/react": "^17.0.8",
-        "@types/react-dom": "^17.0.5",
-        "parcel-bundler": "^1.12.5",
-        "typescript": "^4.3.2"
-    },
+    "name": "gem-challenge-frontend",
+    "sideEffects": false,
     "scripts": {
-        "start": "parcel src/index.html --out-dir build/debug",
-        "build": "parcel build src/index.html --out-dir build/release --public-url ./"
+        "start": "parcel serve src/index.html --open",
+        "build": "parcel build ./src/index.html --no-scope-hoist"
     },
     "dependencies": {
-        "@chakra-ui/react": "^1.6.3",
-        "@emotion/react": "^11",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "@emotion/styled": "^11",
-        "framer-motion": "^4"
-    }
+        "@chakra-ui/icons": "^1.0.1",
+        "@chakra-ui/react": "1.1.0",
+        "@emotion/react": "^11.1.2",
+        "@emotion/styled": "^11.0.0",
+        "@parcel/transformer-typescript-tsc": "^2.0.0-nightly.524",
+        "@types/node": "^14.14.10",
+        "@types/react": "^16.9.56",
+        "@types/react-dom": "^16.9.9",
+        "@types/react-router-dom": "^5.1.6",
+        "focus-visible": "^5.2.0",
+        "framer-motion": "^2.9.5",
+        "moment": "^2.29.1",
+        "polished": "^4.0.5",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-router-dom": "^5.2.0",
+        "react-tooltip": "^4.2.11",
+        "styled-components": "^5.2.1",
+        "use-reducer-async": "^2.0.1"
+    },
+    "devDependencies": {
+        "parcel": "2.0.0-nightly.524",
+        "prettier": "^2.2.1",
+        "typescript": "^4.1.3"
+    },
+    "browserslist": [
+        "since 2017-06"
+    ]
 }

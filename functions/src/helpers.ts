@@ -1,4 +1,5 @@
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import * as express from 'express';
 import { Express, Response } from 'express';
 
@@ -26,6 +27,7 @@ export const initializeExpress = (): Express => {
 
     app.use('/', express());
     app.use(bodyParser.json());
+    app.use(cors());
     app.use(bodyParser.urlencoded({ extended: false }));
 
     return app;
