@@ -1,17 +1,20 @@
 # Solution
 ## Description of the problem and solution
-I decided to make a basic quiz app with a react + typescript frontend and an Express + Firebase backend. I was able to easily spin up a hosted nosql database in Firebase and started making queries in minutes! This solution overall was easy to implement, and hosting the server on Firebase allows for a high level of security and predictibility without having to handle any DevOps myself.
-This app focuses more on the backend as I started the backend first. I am most satisified with the architecture of the backend as it's complex logic is obfuscated into helper functions. The folder structure is clear and it is clear which each route is doing. I also setup the app to allow for database injection (for testing).
+I decided to make a basic quiz app with a React + Typescript frontend and an Express + Firebase backend. I was able to easily spin up a hosted nosql database in Firebase and started making queries in minutes! This solution overall was easy to implement, and hosting the server on Firebase allows for a high level of security and predictibility without having to handle any DevOps myself.
+### Backend
+This app focuses more on the backend as I started the backend first. I am satisified with it's architecture. The server's complex logic is obfuscated into helper functions, the folder structure is clear, and it is clear which each route is doing. I also setup the app to allow for database injection (for testing). Testing was definitely the most challenging. I unfortunately followed a rabbit trail into some libraries that claimed to mock the `Firestore` object for me in Jest so I could create more rigorous unit tests. I kept hitting issues with conflicting firebase versions and couldn't use these libraries, so instead I created my own object that spoofed some of the basic functionality. If I had more time on the backend, I would make better unit tests - including failing assertions - and add integration testing with Firebase emulators.
 
-## Challenges
-My biggest challenges for this project was test driven development. I had a tough time implementing different library‘s, specifically to mark the fire store database I was using. Are utilized dependency injection and a fake database object to simulate what fire store I would return from my server so that it could be tested and isolation.
-If I had more time, I would definitely more battle hardened testing methods, integration testing and flushing out all my tests to include failing assertions as well. 
+### Frontend
+The frontend ended up being very basic due to with the bundler issues I was using taking up too much time.
+
+## Challenges 
 
 Whether the solution focuses on back-end, front-end or if it's full stack
 Reasoning behind your technical choices, including architectural
 Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project
 Instructions for getting a copy running locally
 Link to the hosted application where it you have it running for review
+
 Green Egg Media Web App Coding Challenge
 ========================================
 
