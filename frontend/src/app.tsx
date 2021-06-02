@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './components/home';
 import Quiz from './components/quiz';
+import Results from './components/results';
 import { useAppState } from './state/appState';
 
 export default () => {
@@ -23,6 +24,9 @@ export default () => {
             </Route>
             <Route path="/quiz/:questionId">
                 <Quiz />
+            </Route>
+            <Route path="/results/">
+                <Results />
             </Route>
         </Switch>
     );

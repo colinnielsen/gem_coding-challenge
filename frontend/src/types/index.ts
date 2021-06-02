@@ -8,3 +8,7 @@ export type Question = {
     question: string;
     choices: Choices[];
 };
+
+export type Answer = {
+    id: boolean;
+};
