@@ -1,19 +1,42 @@
-# Solution
 ## Description of the problem and solution
 I decided to make a basic quiz app with a React + Typescript frontend and an Express + Firebase backend. I was able to easily spin up a hosted nosql database in Firebase and started making queries in minutes! This solution overall was easy to implement, and hosting the server on Firebase allows for a high level of security and predictibility without having to handle any DevOps myself.
+
 ### Backend
-This app focuses more on the backend as I started the backend first. I am satisified with it's architecture. The server's complex logic is obfuscated into helper functions, the folder structure is clear, and it is clear which each route is doing. I also setup the app to allow for database injection (for testing). Testing was definitely the most challenging. I unfortunately followed a rabbit trail into some libraries that claimed to mock the `Firestore` object for me in Jest so I could create more rigorous unit tests. I kept hitting issues with conflicting firebase versions and couldn't use these libraries, so instead I created my own object that spoofed some of the basic functionality. If I had more time on the backend, I would make better unit tests - including failing assertions - and add integration testing with Firebase emulators.
+This app focuses more on the backend as I started the backend first. I am satisified with it's architecture. The server's complex logic is obfuscated into helper functions, the folder structure is clear, and it is clear which each route is doing. I also setup the app to allow for database injection (for testing). Testing was definitely the most challenging. I unfortunately followed a rabbit trail into some libraries that claimed to mock the `Firestore` object for me in Jest so I could create more rigorous unit tests. I kept hitting issues with conflicting firebase versions and couldn't use these libraries, so instead I created my own object that spoofed some of the basic functionality. 
+I purposefully seperated the `questions` and `answers` collection. All the validation is done on the server side for security reasons. A user passes the question id and an answer, and the server will tell them if the answer is valid.
+If I had more time on the backend, I would make better unit tests - including failing assertions - and add integration testing with Firebase emulators.
+
 
 ### Frontend
-The frontend ended up being very basic due to with the bundler issues I was using taking up too much time.
+The frontend ended up being very simplistic due to wasted time on bundler issues. Overall I like the structure of the app, with questions and user answers being stored in global state, and each question being routed. I wanted to emphasize a clean frontend that: abstracts server callouts, is keyboard accessible, has type-safety via Typescript, and extends global state efficiently. 
 
-## Challenges 
+If I had more time, I would make one of two refactors: 
+  1. refactor the quiz so the user sees if they have guessed correctly
+  2. save answer validation to the end of the test.
 
-Whether the solution focuses on back-end, front-end or if it's full stack
-Reasoning behind your technical choices, including architectural
-Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project
-Instructions for getting a copy running locally
-Link to the hosted application where it you have it running for review
+The code implementation of `Quiz` and `QuestionCard` could be cleaned up further as well.
+
+### Installation
+#### Frontend
+  1. `git clone https://github.com/colinnielsen/gem_coding-challenge`
+  2. `cd frontend/`
+  3. `yarn | npm i`
+  4. `yarn start`
+
+#### Backend
+The server is up and running at `FIREBASE_URL` so no need to run it locally to test.
+
+To test the server
+   1. `cd functions/`
+   2. `yarn test | npm test`
+
+
+#### Link to app [here](https://gemcodinginterview.web.app/).
+
+
+
+
+
 
 Green Egg Media Web App Coding Challenge
 ========================================
