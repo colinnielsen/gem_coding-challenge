@@ -71,3 +71,4 @@ lib/
 build/
 .parcel-cache/
 dist/
+yarn.lock

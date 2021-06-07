@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Question } from '../types';
+import { Answer, Question, Validation } from '../types';
 export const FIREBASE_URL = 'https://us-central1-gemcodinginterview.cloudfunctions.net/api';
 
 export default {
@@ -11,11 +11,11 @@ export default {
         const response = await axios(`${FIREBASE_URL}/question/${questionId}`);
         return response.data as Question;
     },
-    validate: async (questionId: string, answer: string): Promise<boolean> => {
-        const response = await axios.post(`${FIREBASE_URL}/validate/${questionId}`, {
-            answer,
+    validate: async (answers: Answer[]): Promise<Validation> => {
+        const response = await axios.post(`${FIREBASE_URL}/validate/`, {
+            answers,
         });
 
-        return response.data.isValid as boolean;
+        return response.data as Validation;
     },
 };

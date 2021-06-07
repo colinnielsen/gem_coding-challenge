@@ -4,8 +4,9 @@ import * as express from 'express';
 import { Express, Response } from 'express';
 
 type firestoreDb = FirebaseFirestore.Firestore;
-export const reject = (res: Response, rejectMessage: string): void => {
-    res.status(400).send({ rejectMessage });
+export const reject = (res: Response, error: Error): void => {
+    res.status(400);
+    res.send({ rejectMessage: error.message });
 };
 
 const getDocs = async (collectionName: string, db: firestoreDb) => (await db.collection(collectionName).get()).docs;
@@ -16,10 +17,11 @@ export const getQuestionById = async (db: firestoreDb, id: string): Promise<Fire
     return question;
 };
 
-export const getAnswerById = async (db: firestoreDb, id: string): Promise<FirebaseFirestore.DocumentData> => {
-    const answer = await getDocs('answers', db).then(docs => docs.find(doc => doc.id === id));
-    if (!answer) throw new Error('answer not found');
-    return answer;
+export const getAnswers = async (db: firestoreDb): Promise<FirebaseFirestore.DocumentData> => {
+    const answers = (await getDocs('answers', db)).map(doc => ({ id: doc.id, ...doc.data() }));
+    if (!answers) throw new Error('answers not found');
+
+    return answers;
 };
 
 export const initializeExpress = (): Express => {
