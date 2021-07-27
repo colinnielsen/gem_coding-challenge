@@ -1,5 +1,6 @@
 import { Express } from 'express';
-import { getAnswerById, getQuestionById, initializeExpress, reject } from './helpers';
+import { getAnswers, getQuestionById, initializeExpress, reject } from './helpers';
+import { Answer, Validation } from './types';
 
 export type FirestoreDb = FirebaseFirestore.Firestore;
 
@@ -35,16 +36,19 @@ const runServer = (db: FirestoreDb): Express => {
         }
     });
 
-    app.post('/validate/:questionId', async (req, res) => {
+    app.post('/validate', async (req, res) => {
         try {
             const {
-                params: { questionId },
-                body: { answer },
+                body: { answers: userAnswers },
             } = req;
-            const answerData = (await getAnswerById(db, questionId)).data();
-            const isValid = answerData.answer === answer;
+            const answerData = await getAnswers(db);
 
-            res.send({ isValid });
+            const validation = userAnswers.reduce((validation: Validation, { id, answer }: Answer) => {
+                const isValid = answerData.find((answer: Answer) => answer.id === id).answer === answer;
+                return { ...validation, [id]: isValid };
+            }, {});
+
+            res.send({ validation });
         } catch (e) {
             reject(res, e);
         }

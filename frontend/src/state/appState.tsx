@@ -5,20 +5,20 @@ import { Answer, Question } from '../types';
 type AppState = {
     questions: Question[];
     setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
-    answers: Answer | {};
-    setAnswers: React.Dispatch<React.SetStateAction<{}>>;
+    answers: Answer[];
+    setAnswers: React.Dispatch<React.SetStateAction<Answer[]>>;
 };
 const initialState: AppState = {
     questions: [],
     setQuestions: () => undefined,
-    answers: {},
+    answers: [],
     setAnswers: () => undefined,
 };
 const AppContext = React.createContext<AppState>(initialState);
 
 export const AppState = ({ children }: { children: JSX.Element }) => {
     const [questions, setQuestions] = React.useState<Question[]>([]);
-    const [answers, setAnswers] = React.useState({});
+    const [answers, setAnswers] = React.useState<Answer[]>([]);
 
     React.useEffect(() => {
         questionsAPI.getQuestions().then(setQuestions).catch(console.error);
